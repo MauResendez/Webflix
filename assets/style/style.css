@@ -60,7 +60,8 @@ body {
 }
 
 .column .header {
-    padding: 20px 0;
+    padding: 10px 0;
+    /* padding: 20px 0; */
 }
 
 .column h3 {
@@ -86,4 +87,11 @@ body {
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
 }
