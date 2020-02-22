@@ -1,8 +1,7 @@
 <?php
-    require_once("includes/config.php");
+    require_once("includes/header.php");
 
-    if(!isset($_SESSION["userLoggedIn"])) // If the session is not set, go to the register page
-    {
-        header("Location: register.php");
-    }
+    $preview = new PreviewProvider($con, $userLoggedIn);
+
+    echo $preview->createPreviewVideo(null);
 ?>
