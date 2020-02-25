@@ -25,33 +25,44 @@
             // add subtitles later
 
             return "<div class='previewContainer'>
-                <img src='$thumbnail' class='previewImage' hidden>
 
-                <video autoplay muted class='previewVideo' onended='previewEnded()'>
-                    <source src='$preview' type='video/mp4'>
-                </video>
+                        <img src='$thumbnail' class='previewImage' hidden>
 
-                <div class='previewOverlay'>
-                    <div class='mainDetails'>
-                        <h3>$name</h3>
+                        <video autoplay muted class='previewVideo' onended='previewEnded()'>
+                            <source src='$preview' type='video/mp4'>
+                        </video>
 
-                        <div class='buttons'>
-                            <button><i class='fas fa-play'></i> Play</button>
-                            <button onclick='volumeToggle(this)'><i class='fas fa-volume-mute'></i></button>
+                        <div class='previewOverlay'>
+                            <div class='mainDetails'>
+                                <h3>$name</h3>
+
+                                <div class='buttons'>
+                                    <button><i class='fas fa-play'></i> Play</button>
+                                    <button onclick='volumeToggle(this)'><i class='fas fa-volume-mute'></i></button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>";
+
+                    </div>";
+        }
+
+        public function createEntityPreviewSquare($entity)
+        {
+            $id = $entity->getId();
+            $thumbnail = $entity->getThumbnail();
+            $name = $entity->getName();
+
+            return "<a href='entity.php?id=$id'>
+                        <div class='previewContainer small'>
+                            <img src='$thumbnail' title='$name'>
+                        </div>
+                    </a>";
         }
 
         private function getRandomEntity()
         {
-            $query = $this->con->prepare("SELECT * FROM entities ORDER BY RAND() LIMIT 1"); // Selects one row from the entities table at random
-            $query->execute();
-
-            $row = $query->fetch(PDO::FETCH_ASSOC); // Gets data and put it into an associative array
-
-            return new Entity($this->con, $row);
+            $entity = EntityProvider::getEntities($this->con, null, 1);
+            return $entity[0];
         }
     }
 ?>

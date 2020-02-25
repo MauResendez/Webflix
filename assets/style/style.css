@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     height: 100%;
     padding: 0;
     margin: 0;
@@ -15,6 +14,24 @@ body {
     outline: none;
 }
 
+h3 {
+    color: #e5e5e5;
+}
+
+a {
+    text-decoration: none;
+}
+
+a h3:hover {
+    color: white;
+}
+
+.wrapper {
+    min-width: 1050px;
+    min-height: 100%;
+    background-color: #141414;
+}
+
 .signInContainer {
     background-color: black;
     height: 100vh;
@@ -28,6 +45,7 @@ body {
     min-height: 300px;
     max-height: 100%;
     width: 450px;
+    box-shadow: rgba(0,0,0, 0.1) 0 1px 2px;
     padding: 20px 35px;
     overflow-y: auto;
 }
@@ -35,6 +53,7 @@ body {
 .column form {
     display: flex;
     flex-direction: column;
+    /* padding-top: 24px; */
 }
 
 .column form input[type="text"],
@@ -61,7 +80,6 @@ body {
 
 .column .header {
     padding: 10px 0;
-    /* padding: 20px 0; */
 }
 
 .column h3 {
@@ -71,6 +89,10 @@ body {
     margin: 0;
     padding-top: 16px;
     color: #000;
+}
+
+.column .header span {
+    font-size: 14px;
 }
 
 .column .header img {
@@ -90,33 +112,49 @@ body {
 }
 
 .errorMessage {
-    color: red;
+    color: #f00;
     font-size: 14px;
     font-weight: 400;
     text-align: center;
 }
 
-.previewVideo, .previewImage
-{
+.previewImage,
+.previewVideo {
     width: 100%;
 }
 
-.previewContainer
-{
+.previewContainer {
     position: relative;
     display: flex;
 }
 
-.previewOverlay
-{
+.previewContainer.small {
+    width: 230px;
+    height: 129px;
+    margin-right: 4px;
+    display: inline-flex;
+}
+
+.previewContainer.small img {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+.previewOverlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
     position: absolute;
 }
 
-.previewOverlay .mainDetails
-{
+.previewOverlay .mainDetails h3 {
+    color: #fff;
+    font-size: 40px;
+    margin: 15px 0;
+}
+
+.previewOverlay .mainDetails {
     position: relative;
     top: 35%;
     margin-left: 50px;
@@ -124,20 +162,12 @@ body {
     flex-direction: column;
 }
 
-.previewOverlay .mainDetails h3
-{
-    color: white;
-    font-size: 40px;
-    margin: 15px 0;
-}
-
-.mainDetails button
-{
-    background-color: rgba(51, 51, 51, 0.4);
-    color: white;
+.mainDetails button {
+    background-color: rgba(51,51,51,0.4);
+    color: #fff;
     border: none;
     min-width: 150px;
-    padding: 0 30px;
+    padding: 0 38px;
     height: 50px;
     max-height: 50px;
     font-size: 18px;
@@ -147,13 +177,23 @@ body {
     cursor: pointer;
 }
 
-button i
-{
+button i {
     color: inherit;
 }
 
-.mainDetails button:hover
-{
+.mainDetails button:hover {
     background-color: #e6e6e6;
-    color: black;
+    color: #000;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.entities {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
