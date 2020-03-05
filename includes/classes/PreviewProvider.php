@@ -17,12 +17,16 @@
                 $entity = $this->getRandomEntity();
             }
 
+            // gets data
+
             $id = $entity->getId();
             $name = $entity->getName();
             $preview = $entity->getPreview();
             $thumbnail = $entity->getThumbnail();
 
             // add subtitles later
+
+            // creates preview that autoplays a preview video given from a random entity (from our random entity function) and then shows the entity's thumbnail after the video ends
 
             return "<div class='previewContainer'>
 
@@ -46,11 +50,15 @@
                     </div>";
         }
 
-        public function createEntityPreviewSquare($entity)
+        public function createEntityPreviewSquare($entity) // creates preview for the entity for the user to click on and to go to that entities page to watch it
         {
+            // gets entity's data
+
             $id = $entity->getId();
             $thumbnail = $entity->getThumbnail();
             $name = $entity->getName();
+
+            // creates a small preview of that entity that displays its data with html and css and make it have an entity page of its own
 
             return "<a href='entity.php?id=$id'>
                         <div class='previewContainer small'>

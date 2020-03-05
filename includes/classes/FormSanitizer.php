@@ -11,15 +11,15 @@
             $words = explode(" ", $inputText);
             $string = "";
     
-            for ($x = 0; $x < sizeof($words); $x++) 
+            for ($x = 0; $x < sizeof($words); $x++) // 
             {
                 if($x == 0)
                 {
-                    $string = ucfirst($words[$x]);
+                    $string = ucfirst($words[$x]); // creates name string
                 }
                 else
                 {
-                    $string = $string . " " . ucfirst($words[$x]);
+                    $string = $string . " " . ucfirst($words[$x]); // adds a space with the next capitalized name to that name string
                 }
             }
     

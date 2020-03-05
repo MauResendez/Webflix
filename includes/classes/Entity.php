@@ -21,24 +21,60 @@
             }
         }
 
-        public function getId()
+        public function getId() // gets id data
         {
             return $this->sqlData["id"];
         }
 
-        public function getName()
+        public function getName() // gets name data
         {
             return $this->sqlData["name"];
         }
 
-        public function getThumbnail()
+        public function getThumbnail() // gets thumbnail data
         {
             return $this->sqlData["thumbnail"];
         }
 
-        public function getPreview()
+        public function getPreview() // gets preview data
         {
             return $this->sqlData["preview"];
+        }
+
+        public function getCategoryId() // gets preview data
+        {
+            return $this->sqlData["categoryId"];
+        }
+
+        public function getSeasons() // Gets seasons and episodes in order from first seasons to last season with episodes also being in order from first to last episode
+        {
+            $query = $this->con->prepare("SELECT * FROM videos WHERE entityId=:id AND isMovie=0 ORDER BY season, episode ASC");
+
+            $query->bindValue(":id", $this->getId());
+            $query->execute();
+
+            $seasons = array();
+            $videos = array();
+            $currentSeason = null;
+
+            while($row = $query->fetch(PDO::FETCH_ASSOC)) // queries through all the videos
+            {
+                if($currentSeason != null && $currentSeason != $row["season"])
+                {
+                    $seasons[] = new Season($currentSeason, $videos); // puts the new season in the next spot of the array
+                    $videos = array(); // clearing the array
+                }
+
+                $currentSeason = $row["season"];
+                $videos[] = new Video($this->con, $row); // puts a new video in the next spot of the array
+            }
+
+            if(sizeof($videos) != 0) // if videos array is not empty, put 
+            {
+                $seasons[] = new Season($currentSeason, $videos); // puts the new season in the next spot of the array
+            }
+
+            return $seasons;
         }
     }
 ?>
