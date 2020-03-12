@@ -11,9 +11,9 @@
             {
                 $this->sqlData = $input;
             }
-            else // else assume input is the id and use it to find the data from the entity that has that id
+            else // else assume input is the id and use it to find the data from the videos that has that id
             {
-                $query = $this->con->prepare("SELECT * FROM ENTITIES WHERE id=:id");
+                $query = $this->con->prepare("SELECT * FROM videos WHERE id=:id");
                 $query->bindValue(":id", $input);
                 $query->execute();
 
@@ -51,6 +51,13 @@
         public function getEpisodeNumber()
         {
             return $this->sqlData["episode"];
+        }
+
+        public function incrementViews()
+        {
+            $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=:id");
+            $query->bindValue(":id", $this->getId());
+            $query->execute();
         }
     }
 ?>
