@@ -23,6 +23,14 @@
             $name = $entity->getName();
             $preview = $entity->getPreview();
             $thumbnail = $entity->getThumbnail();
+            $videoId = VideoProvider::getEntityVideoForUser($this->con, $id, $this->username);
+            $video = new Video($this->con, $videoId);
+
+            $inProgress = $video->isInProgress($this->username);
+            $playButtonText = $inProgress ? "Continue Watching" : "Play"; // Checks if the video is in progress or not. If it is, show continue watching on screen. Else show play.
+
+            $seasonEpisode = $video->getSeasonAndEpisode();
+            $subHeading = $video->isMovie() ? "" : "<h4>$seasonEpisode</h4>"; // Checks if it's a movie or not. If it is, don't add anything. If it isn't, add the subtitle under the title.
 
             // add subtitles later
 
@@ -39,9 +47,10 @@
                         <div class='previewOverlay'>
                             <div class='mainDetails'>
                                 <h3>$name</h3>
+                                $subHeading
 
                                 <div class='buttons'>
-                                    <button><i class='fas fa-play'></i> Play</button>
+                                    <button onclick='watchVideo($videoId)'><i class='fas fa-play'></i> $playButtonText</button>
                                     <button onclick='volumeToggle(this)'><i class='fas fa-volume-mute'></i></button>
                                 </div>
                             </div>

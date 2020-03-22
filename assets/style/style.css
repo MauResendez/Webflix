@@ -154,6 +154,12 @@ a h3:hover {
     margin: 15px 0;
 }
 
+.previewOverlay .mainDetails h4 {
+    color: #fff;
+    font-size: 20px;
+    margin: 15px 0;
+}
+
 .previewOverlay .mainDetails {
     position: relative;
     top: 35%;
@@ -232,6 +238,7 @@ button i {
     display: flex;
     flex-direction: column;
     width: 230px;
+    position: relative;
 }
 
 .episodeContainer img {
@@ -291,3 +298,29 @@ button i {
 .videoControls button:active {
     border: none;
 }
+
+.upNext {
+    height: 100%;
+    justify-content: center;
+}
+
+.upNextContainer button {
+    padding: 0px;
+}
+
+.upNextContainer h2, .upNextContainer h3 {
+    color: white;
+}
+
+.watchNav {
+    z-index: 2;
+}
+
+.seen {
+    color: #2ecc71;
+    font-size: 26px;
+    position: absolute;
+    top: 5px;
+    left: 5px
+}
+

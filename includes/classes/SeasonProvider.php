@@ -51,6 +51,7 @@
             $description = $video->getDescription();
             $thumbnail = $video->getThumbnail();
             $episode = $video->getEpisodeNumber();
+            $hasSeen = $video->hasSeen($this->username) ? '<i class="fas fa-check-circle seen"></i>' : "";
 
             return "<a href='watch.php?id=$id'>
                         <div class='episodeContainer'>
@@ -61,6 +62,8 @@
                                     <h4>$episode. $title</h4>
                                     <span>$description</span>
                                 </div>
+
+                                $hasSeen
                             </div>
                         </div>
                     </a>";

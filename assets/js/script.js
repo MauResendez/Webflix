@@ -114,3 +114,20 @@ function setStartTime(videoId, username)
         })
     })
 }
+
+function restartVideo()
+{
+    $("video")[0].currentTime = 0; // the [0] accesses the javascript object to be able to change the time. Resets the video time
+    $("video")[0].play();
+    $(".upNext").fadeOut();
+}
+
+function watchVideo(videoId) // goes to the video 
+{
+    window.location.href = "watch.php?id=" + videoId;
+}
+
+function showUpNext() // shows up next layout
+{
+    $(".upNext").fadeIn();
+}
