@@ -1,3 +1,8 @@
+$(document).scroll(function()
+{
+    $(".topBar").toggleClass("scrolled", $(this).scrollTop() > $(".topBar").height()); // condition means that when the top of the actual page is greater than the height of the topbar, set it to true. Else, set it to false.
+});
+
 function volumeToggle(button)
 {
     var muted = $(".previewVideo").prop("muted");

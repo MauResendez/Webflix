@@ -25,6 +25,38 @@
             return $html . "</div>";
         }
 
+        public function showTVCategories()
+        {
+            $query = $this->con->prepare("SELECT * FROM categories");
+            $query->execute();
+
+            $html = "<div class='previewCategories'>
+                     <h1>TV Shows</h1>";
+
+            while($row = $query->fetch(PDO::FETCH_ASSOC))
+            {
+                $html .= $this->getCategoryHtml($row, null, true, false);
+            }
+
+            return $html . "</div>";
+        }
+
+        public function showMovieCategories()
+        {
+            $query = $this->con->prepare("SELECT * FROM categories");
+            $query->execute();
+
+            $html = "<div class='previewCategories'>
+                     <h1>Movies</h1>";
+
+            while($row = $query->fetch(PDO::FETCH_ASSOC))
+            {
+                $html .= $this->getCategoryHtml($row, null, false, true);
+            }
+
+            return $html . "</div>";
+        }
+
         public function showCategory($categoryId, $title = null)
         {
             $query = $this->con->prepare("SELECT * FROM categories WHERE id=:id");
@@ -48,28 +80,28 @@
 
             if($tvShows && $movies)
             {
-                $entities = EntityProvider::getEntities($this->con, $categoryId, 30);
+                $entities = EntityProvider::getEntities($this->con, $categoryId, 30); // returns the entity array that has everything
             }
             else if($tvShows)
             {
-                // get tv show entities
+                $entities = EntityProvider::getTVEntities($this->con, $categoryId, 30); // returns the entity array that only has TV Shows
             }
             else if($movies)
             {
-                // get movies entities
+                $entities = EntityProvider::getMovieEntities($this->con, $categoryId, 30); // returns the entity array that only has movies
             }
 
-            if(sizeof($entities) == 0)
+            if(sizeof($entities) == 0) // if entity array is empty, just return
             {
                 return;
             }
 
             $entitiesHtml = "";
-            $previewProvider = new PreviewProvider($this->con, $this->username);
+            $previewProvider = new PreviewProvider($this->con, $this->username); // new Preview Provider to let you create the entity preview squares
             
             foreach($entities as $entity)
             {
-                $entitiesHtml .= $previewProvider->createEntityPreviewSquare($entity);
+                $entitiesHtml .= $previewProvider->createEntityPreviewSquare($entity); // Loops through entity array to create the html with the html returned by the function
             }
 
 

@@ -32,3 +32,10 @@
 
     <body>
         <div class='wrapper'>
+
+        <?php
+            if(!isset($hideNav)) // If hideNav variable is not set, include the navBar.php. Else, hide the navBar by not including it.
+            {
+                include_once("includes/navBar.php");
+            }
+        ?>

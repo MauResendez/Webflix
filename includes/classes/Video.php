@@ -90,26 +90,26 @@
 
         public function isInProgress($username)
         {
-            $query = $this->con->prepare("SELECT * FROM videoprogress WHERE videoId = :videoId AND username = :username"); // Searches for videos that the user was in the middle of watching
+            $query = $this->con->prepare("SELECT * FROM videoprogress WHERE videoId = :videoId AND username = :username"); // Searches for the video that the user is on to see if it already started before
 
             $query->bindValue(":videoId", $this->getId());
             $query->bindValue(":username", $username);
             
             $query->execute();
 
-            return $query->rowCount() != 0;
+            return $query->rowCount() != 0; // If the row count is not 0 (meaning the video has already started), then return true. Else return false
         }
 
         public function hasSeen($username)
         {
-            $query = $this->con->prepare("SELECT * FROM videoprogress WHERE videoId = :videoId AND username = :username AND finished = 1"); 
+            $query = $this->con->prepare("SELECT * FROM videoprogress WHERE videoId = :videoId AND username = :username AND finished = 1"); // Searches for the video that the user is on to see if it has already finished before
 
             $query->bindValue(":videoId", $this->getId());
             $query->bindValue(":username", $username);
             
             $query->execute();
 
-            return $query->rowCount() != 0;
+            return $query->rowCount() != 0; // If the row count is not 0 (meaning the video has finished or seen before), then return true. Else return false
         }
     }
 ?>
