@@ -377,4 +377,67 @@ button i {
     margin-left: 10px; /* adds space to the left */
 }
 
+.textboxContainer {
+    padding: 100px 62.5px;
+}
+
+.searchInput {
+    height: 50px;
+    width: 600px;
+    border: 1px solid #dedede;
+    color: white;
+    background-color: transparent;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.settingsContainer {
+    padding-top: 120px;
+    background-color: transparent;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settingsContainer h2{
+    color: white;
+}
+
+.settingsContainer .formSection {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 20px;
+}
+
+.settingsContainer form input[type="text"], input[type="password"], input[type="email"] {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 3px;
+    padding: 0 5px;
+}
+
+.settingsContainer form input[type="submit"] {
+    background-color: red;
+    width: 100px;
+    height: 40px;
+}
+
+.alertSuccess, .alertFailure {
+    margin: 10px 0;
+}
+
+.alertSuccess {
+    color: #2ecc71;
+}
+
+.alertFailure {
+    color: #dc1928;
+}
+
 

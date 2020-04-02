@@ -11,7 +11,7 @@
             $words = explode(" ", $inputText);
             $string = "";
     
-            for ($x = 0; $x < sizeof($words); $x++) // 
+            for ($x = 0; $x < sizeof($words); $x++) // loops through the array of words
             {
                 if($x == 0)
                 {
